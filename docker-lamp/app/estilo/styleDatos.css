@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+
+    overflow: hidden;
+    padding-left: 200px;
+}
+.titulo{
+    color: black;
+    padding-top: 50px;
+    text-align: center;
+    text-shadow: 5px 2px 2px rgb(49, 47, 61);
+    font-size: 100px;
+}
+.informacion{
+    text-align: center;
+    padding-top: 200px;
+    padding-bottom: 20px;
+    
+}
+.informacion input[type="text"],input[type="date"],input[type="password"],label{
+    width: 30%;
+    margin: 10px auto;
+    max-width: 300px;
+    text-align: center;
+    height: 30px;
+    font-size: 130%;
+}
+.informacion input[type="submit"]{
+    width: 100px;
+}

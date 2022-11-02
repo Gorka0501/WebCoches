@@ -1,0 +1,27 @@
+/* Barra lateral */
+.nav-links{
+    height:100%;
+    width:200px;
+    background-color:black;
+    position:fixed;
+    z-index:1;
+    overflow:auto
+}
+.logoB{
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    display: block;
+}
+.nav-links a{ 
+    padding: 20px 8px 20px 8px;
+    text-decoration: none;
+    font-size: 30px;
+    color:whitesmoke;
+    display: block;
+}
+.nav-links a:hover{
+    background-color: rgb(9, 5, 56);
+}
+/*----------------------------------------------*/

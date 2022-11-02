@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+
+    overflow: hidden;
+    padding-left: 200px;
+}
+.header{
+    background-image: url("../images/2710.jpg");
+    background-position: center;
+    background-size: cover;
+    min-height: 400px;
+
+}
+.titulo{
+    color: black;
+    padding-top: 50px;
+    text-align: center;
+    text-shadow: 5px 2px 2px rgb(49, 47, 61);
+    font-size: 100px;
+}
+.sub-titulo{
+    color: darkblue;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 35px;
+}
+.sesion{
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+.sesion h1{
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.sesion input[type="text"],input[type="date"],input[type="password"],label{
+    width: 30%;
+    margin: 10px auto;
+    min-width: 150px;
+    max-width: 300px;
+    text-align: center;
+    height: 30px;
+    font-size: 130%;
+}
+.sesion input[type="submit"]{
+    width: 10%;
+    height: 30px;
+    font-size: 20px;
+    max-width: 120px;
+    min-width: 60px;
+}
+.sesion input[type="button"]{
+    width:20%;
+    height: 25px;
+    font-size: 100%;
+    max-width: 180px;
+    min-width: 90px;
+}
+

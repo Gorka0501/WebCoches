@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main{
+
+    overflow: hidden;
+    padding-left: 200px;
+}
+.header{
+    background-position: center;
+    background-size: cover;
+    min-height: 400px;
+
+}
+.titulo{
+    color: black;
+    padding-top: 50px;
+    text-align: center;
+    text-shadow: 5px 2px 2px rgb(49, 47, 61);
+    font-size: 100px;
+}
+.sub-titulo{
+    color: black;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 35px;
+}
+.tabla{
+	margin-right:auto;
+	margin-left:auto;
+	text-align: center;
+	border-collapse: separate;
+	border: 1px solid #000;
+}
+th, td {
+   vertical-align: top;
+   border: 1px solid #000;
+}
+
