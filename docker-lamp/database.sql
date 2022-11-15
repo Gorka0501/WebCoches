@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Oct 24, 2021 at 09:08 PM
--- Server version: 10.6.4-MariaDB-1:10.6.4+maria~focal
+-- Generation Time: Dec 10, 2021 at 12:24 PM
+-- Server version: 10.6.5-MariaDB-1:10.6.5+maria~focal
 -- PHP Version: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -41,12 +41,25 @@ CREATE TABLE `alquiler` (
 --
 
 CREATE TABLE `coche` (
-  `id` int(6) NOT NULL,
+  `id` int(9) NOT NULL,
   `dni` varchar(9) DEFAULT NULL,
   `marca` varchar(10) DEFAULT NULL,
   `modelo` varchar(20) DEFAULT NULL,
   `nAsientos` int(1) DEFAULT NULL,
   `kmTraje` int(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sesiones`
+--
+
+CREATE TABLE `sesiones` (
+  `id` int(9) NOT NULL,
+  `dni` varchar(9) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `valido` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -62,7 +75,8 @@ CREATE TABLE `usuario` (
   `tlf` int(9) NOT NULL,
   `email` varchar(20) NOT NULL,
   `fNaci` date NOT NULL,
-  `contrasena` varchar(20) NOT NULL
+  `contrasena` varchar(80) NOT NULL,
+  `nBancario` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -84,6 +98,12 @@ ALTER TABLE `coche`
   ADD KEY `dni` (`dni`);
 
 --
+-- Indexes for table `sesiones`
+--
+ALTER TABLE `sesiones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -97,7 +117,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `coche`
 --
 ALTER TABLE `coche`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sesiones`
+--
+ALTER TABLE `sesiones`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -114,3 +140,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

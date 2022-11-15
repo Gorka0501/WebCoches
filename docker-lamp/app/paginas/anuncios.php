@@ -1,6 +1,8 @@
 <?php
-session_start();
-if(!$_SESSION['loged']==true){header('Location: ../paginas/index.php');}
+include("../codigoPHP/sesion.php");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header_remove("X-Powered-By");
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +15,7 @@ if(!$_SESSION['loged']==true){header('Location: ../paginas/index.php');}
         <script type="text/javascript" src="../js/prog.js"></script>
 
     </head>
-    <body>
+    <body onload="inactividad()">
         <!--Barra lateral-->
         <div class="nav-links">
             <!--Logo-->
@@ -66,6 +68,7 @@ if(!$_SESSION['loged']==true){header('Location: ../paginas/index.php');}
                                     }else{echo "No";}
                                     ?> </td>
                                 <td><input type="submit" value="Eliminar" ></td>
+                                <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
                             </form>
                         </tr>
                         <?php endwhile;?>   
@@ -83,7 +86,7 @@ if(!$_SESSION['loged']==true){header('Location: ../paginas/index.php');}
                     <label for="nasientos"><b>N&uacutemero de asientos:</b></label>
                     <input type="number" name="nasientos" min=1  max=1000 required><br>
                     
-
+                    <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">            
                     <input type="submit" value="Añadir coche">
                     <input type="button" value="Ver Coches" onclick="bPasarVer()" >
 

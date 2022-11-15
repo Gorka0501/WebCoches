@@ -1,6 +1,8 @@
 <?php
-session_start();
-if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
+include("../codigoPHP/sesion.php");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header_remove("X-Powered-By");
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,7 @@ if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
         <script type="text/javascript" src="../js/prog.js"></script>
 
     </head>
-    <body onload="setFechaMaxD('cambio','fNaciC')">
+    <body onload="setFechaMaxD('cambio','fNaciC');inactividad()">
         <!--Barra lateral-->
         <div class="nav-links">
             <!--Logo-->
@@ -31,23 +33,34 @@ if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
             <section class="header">
                 <h1 class="titulo"> Datos personales</h1>
             </section>
+            <?php
+            $dni=$_SESSION['dni'];
+            include("../codigoPHP/conexion.php");
+            $sql_query = "SELECT dni,nombre,apellidos,tlf,email,aes_decrypt(nBancario,'cifrado') FROM usuario WHERE dni = '$dni'";
+            $resultado = mysqli_query($conn,$sql_query);
+            $row = mysqli_fetch_array($resultado);
+            ?>
             <form class="informacion" id="cambio" onsubmit="return compCambio()" action="../codigoPHP/cambiar.php" method="post">
             	<label for="dniC"><b>DNI:</b></label>
-                <input type="text" name="dniC" placeholder="12345678X"><br>
+                <input type="text" name="dniC" placeholder=<?php echo $row[0];?>><br>
             	<label for="nombreC"><b>NOMBRE:</b></label>
-                <input type="text" name="nombreC" placeholder="Nombre"><br>
+                <input type="text" name="nombreC" placeholder=<?php echo $row[1];?>><br>
             	<label for="apellidosC"><b>Apellidos:</b></label>
-                <input type="text" name="apellidosC" placeholder="Apellidos"><br>
+                <input type="text" name="apellidosC" placeholder=<?php echo $row[2];?>><br>
                 <label for="tlfC"><b>Teléfono:</b></label>
-                <input type="text" name="tlfC" placeholder="123456789"><br>
+                <input type="text" name="tlfC" placeholder=<?php echo $row[3];?>><br>
                 <label for="fNaciC"><b>Fecha de Nacimiento:</b></label>
                 <input type="date" name="fNaciC"><br>
             	<label for="emailC"><b>Email:</b></label>
-                <input type="text" name="emailC" placeholder="example@example.ex"><br>
+                <input type="text" name="emailC" placeholder=<?php echo $row[4];?>><br>
+                <label for="nBacnarioC"><b>Numero Bancario:</b></label>
+                <input type="text" name="nBancarioC" placeholder=<?php echo $row[5];?>><br>
                 <label for="contrasena1C"><b>Contraseña:</b></label>
                 <input type="password" name="contrasena1C" placeholder="1234"><br>
                 <label for="contrasena2C"><b>Confirmar contraseña:</b></label>
                 <input type="password" name="contrasena2C" placeholder="1234"><br>
+
+                <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
 
                 <input type="submit" value="Modificar datos">
             </form>

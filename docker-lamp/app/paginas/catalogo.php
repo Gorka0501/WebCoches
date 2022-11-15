@@ -1,6 +1,8 @@
 <?php
-session_start();
-if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
+include("../codigoPHP/sesion.php");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header_remove("X-Powered-By");
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +15,7 @@ if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
         <script type="text/javascript" src="../js/prog.js"></script>
 
     </head>
-    <body onload="setFechasAlquiler()">
+    <body onload="setFechasAlquiler();inactividad();">
         <!--Barra lateral-->
         <div class="nav-links">
             <!--Logo-->
@@ -59,6 +61,9 @@ if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
                         <td> <?php echo $row[4];?></td>
                         <td><input type="date" name="fInicio" onclick="setFechasAlquilerFin()" require></td>
                         <td><input type="date" name="fFinal" onclick="setFechasAlquilerFin()" require></td>
+
+                        <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
+                        
                         <td><input type="submit" value="Alquilar" ></td>
                     </form>
                 </tr>

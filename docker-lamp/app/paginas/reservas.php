@@ -1,6 +1,8 @@
 <?php
-session_start();
-if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
+include("../codigoPHP/sesion.php");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header_remove("X-Powered-By");
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,7 @@ if($_SESSION['loged']==false){header('Location: ../paginas/index.php');}
         <script type="text/javascript" src="../js/prog.js"></script>
 
     </head>
-    <body>
+    <body onload="inactividad()">
         <!--Barra lateral-->
         <div class="nav-links">
             <!--Logo-->

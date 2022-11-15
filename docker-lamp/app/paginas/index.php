@@ -1,5 +1,12 @@
 <?php
+ini_set('session.cookie_httponly', "1");
+ini_set('session.cookie_samesite', 'Strict');
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header_remove("X-Powered-By");
 session_start();
+if($_SESSION['loged']==true){include("../codigoPHP/cerrarSesion.php");}
+if(!isset($_SESSION["token"])){$_SESSION['token'] = bin2hex(random_bytes(32));}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +41,8 @@ session_start();
                     <h1>Inicio sesión</h1>
                     <input type="text" name=dniL placeholder="DNI" required="required"><br>
                     <input type="password" name=contrasenaL placeholder="Contraseña" required="required"><br>
+
+                    <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
                     <input type="submit" value="Entrar">
 
                     <input type="button" value="No tengo cuenta" onclick="bPasarRegister()">
@@ -54,12 +63,14 @@ session_start();
                     <input type="date" name="fNaciR" require><br>
                     <label for="emailR"><b>Email:</b></label>
                     <input type="text" name="emailR" placeholder="example@example.ex" required><br>
+                    <label for="nBancarioR"><b>Numero Bancario:</b></label>
+                    <input type="text" name="nBancarioR" placeholder="12345678901234567890" required><br>
                     <label for="contrasena1R"><b>Contraseña:</b></label>
                     <input type="password" name="contrasena1R" placeholder="1234" required><br>
                     <label for="contrasena2R"><b>Confirmar Contraseña:</b></label>
                     <input type="password" name="contrasena2R" placeholder="1234" required><br>
                     
-
+                    <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
                     <input type="submit" value="Registrarse">
                     <input type="button" value="Ya tengo cuenta" onclick="bPasarLogin()">
 

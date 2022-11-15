@@ -79,6 +79,17 @@ function comprobarEmail(email){
     }
     return true;
 }
+function comprobarNBancario(nBancario){
+    if(!nBancario.match(/^[0-9]*$/) ){
+    	alert("El número bancario solo puede tener numeros.");
+        return false;
+    }
+    if(nBancario.length != 20 ){
+    	alert("El numero de cifras del número bancario no es 20.");
+        return false;
+    }
+    return true
+}
 function comprobarFecha(fecha){
     if(fecha == ""){
         alert("Introduce una fecha");
@@ -87,16 +98,28 @@ function comprobarFecha(fecha){
     return true
 }
 function comprobarContrasena(contrasena){
-    if(contrasena.length < 4){
-        alert("La contraseña tiene que tener un mínimo de 4 caracteres");
+    if(contrasena.length < 8){
+        alert("La contraseña tiene que tener un mínimo de 8 caracteres");
         return false;
     }
     if(contrasena.length > 20){
         alert("La contraseña puede tener un máximo de 20 caracteres");
         return false
     }
-    if(!contrasena.match(/^[a-zA-Z0-9]+$/)){
-        alert("Introduce una contraseña solo con numeros y letras");
+    if(contrasena.search(/[a-z]/g) == -1){
+        alert("La contraseña debe contener mínimo una minúscula, una mayúscula, un número y un caracter especial.");
+        return false;
+    }
+    if(contrasena.search(/[A-Z]/g) == -1){
+        alert("La contraseña debe contener mínimo una minúscula, una mayúscula, un número y un caracter especial.");
+        return false;
+    }
+    if(contrasena.search(/[0-9]/g) == -1){
+        alert("La contraseña debe contener mínimo una minúscula, una mayúscula, un número y un caracter especial.");
+        return false;
+    }
+    if(contrasena.match(/^[a-zA-Z0-9]+$/)){
+        alert("La contraseña debe contener mínimo una minúscula, una mayúscula, un número y un caracter especial.");
         return false;
     }
     return true;
@@ -120,10 +143,12 @@ function compRegistrar(){
     var apellidosR = document.forms["registerI"]["apellidosR"].value;
     var tlfR = document.forms["registerI"]["tlfR"].value;
     var emailR = document.forms["registerI"]["emailR"].value;
+    var nBancarioR = document.forms["registerI"]["nBancarioR"].value;
     var fNaciR = document.forms["registerI"]["fNaciR"].value;
     var contrasena1R = document.forms["registerI"]["contrasena1R"].value;
     var contrasena2R = document.forms["registerI"]["contrasena2R"].value;
- 
+   
+    
     if (!comprobarDNI(dniR)){
         return false;
     }
@@ -140,6 +165,9 @@ function compRegistrar(){
         return false;
     }
     if (!comprobarFecha(fNaciR)){
+        return false
+    }
+    if (!comprobarNBancario(nBancarioR)){
         return false
     }
     if (!comprobarContrasenasCoinciden(contrasena1R,contrasena2R)){
@@ -166,7 +194,7 @@ function compCambio(){
     var apellidosC = document.forms["cambio"]["apellidosC"].value;
     var tlfC = document.forms["cambio"]["tlfC"].value;
     var emailC = document.forms["cambio"]["emailC"].value;
-    var fNaciC = document.forms["cambio"]["fNaciC"].value;
+    var nBancarioC = document.forms["cambio"]["nBancarioC"].value;
     var contrasena1C = document.forms["cambio"]["contrasena1C"].value;
     var contrasena2C = document.forms["cambio"]["contrasena2C"].value;
 
@@ -193,6 +221,11 @@ function compCambio(){
     }
     if(!emailC == ""){
         if (!comprobarEmail(emailC)){
+            return false;
+        }
+    }
+    if(!nBancarioC == ""){
+        if (!comprobarNBancario(nBancarioC)){
             return false;
         }
     }
@@ -239,3 +272,20 @@ function bPasarVer(){
     document.getElementById('anadirCoche').style.display='none';
 }
 
+
+function inactividad(){
+    var tiempo;
+    window.onmousemove = function(){reiniciar();} 
+    window.onclick = function(){reiniciar();}     
+    window.onscroll = function(){reiniciar();}    
+    window.onkeypress = function(){reiniciar();}   
+
+    function cerrarSesion(){
+        alert("Llevas 60 segundos inactivo");
+        window.location.href = '../paginas/index.php';  
+    }
+    function reiniciar() {
+        clearTimeout(tiempo);
+        tiempo = setTimeout(cerrarSesion,60000);
+    }
+}

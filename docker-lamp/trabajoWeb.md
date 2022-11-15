@@ -1,5 +1,6 @@
 Gorka Cidoncha
-Hugo Fernández
+Alvaro Dueñas
+Jose Mari Gonzalez
 Instalar Docker con snap intall docker
 Descargar la carpeta docker, y entrar en ella.
 Ejecutar este lista de comandos dentro de la carpeta:
