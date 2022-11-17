@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Dec 10, 2021 at 12:24 PM
+-- Generation Time: Nov 15, 2022 at 05:00 PM
 -- Server version: 10.6.5-MariaDB-1:10.6.5+maria~focal
 -- PHP Version: 7.4.20
 
@@ -47,6 +47,20 @@ CREATE TABLE `coche` (
   `modelo` varchar(20) DEFAULT NULL,
   `nAsientos` int(1) DEFAULT NULL,
   `kmTraje` int(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `dniUsuario` varchar(9) NOT NULL,
+  `idCoche` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `valoracion` tinyint(1) NOT NULL,
+  `id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -98,10 +112,19 @@ ALTER TABLE `coche`
   ADD KEY `dni` (`dni`);
 
 --
+-- Indexes for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dniUsuario` (`dniUsuario`),
+  ADD KEY `idCoche` (`idCoche`);
+
+--
 -- Indexes for table `sesiones`
 --
 ALTER TABLE `sesiones`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dni` (`dni`);
 
 --
 -- Indexes for table `usuario`
@@ -120,6 +143,12 @@ ALTER TABLE `coche`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `sesiones`
 --
 ALTER TABLE `sesiones`
@@ -133,11 +162,29 @@ ALTER TABLE `sesiones`
 -- Constraints for table `alquiler`
 --
 ALTER TABLE `alquiler`
-  ADD CONSTRAINT `alquiler_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuario` (`dni`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `alquiler_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `alquiler_ibfk_2` FOREIGN KEY (`id`) REFERENCES `coche` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `coche`
+--
+ALTER TABLE `coche`
+  ADD CONSTRAINT `coche_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`dniUsuario`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`idCoche`) REFERENCES `coche` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sesiones`
+--
+ALTER TABLE `sesiones`
+  ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuario` (`dni`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
