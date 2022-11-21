@@ -44,6 +44,7 @@ header_remove("X-Powered-By");
                         <th>Kilometraje</th>
                         <th>fInicio</th>
                         <th>fFinal</th>
+                        <th>Comentarios</th>
                	    </tr>
                	    <?php
                     include("../codigoPHP/conexion.php");
@@ -64,6 +65,7 @@ header_remove("X-Powered-By");
                         <td> <?php echo $row2[4];?></td>
                         <td> <?php echo $row[1];?></td>
                         <td> <?php echo $row[2];?></td>
+                        <td><input type="button" value="Ver" onclick=<?php echo "<a href='comentarios.php?id=$row[0]&fFin=$row[1],fInicio=$row[1]'></a>"?>; ></td>
                	    </tr>
                	    </tr>
               	  <?php endwhile;?>   

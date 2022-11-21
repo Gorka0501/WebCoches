@@ -45,6 +45,7 @@ header_remove("X-Powered-By");
                     <th>Fecha de Inicio</th>
                     <th>Fecha de Fin</th>
                     <th>Alquilar</th>
+                    <th>Comentarios</th>
                 </tr>
                 <?php
                 $dni=$_SESSION['dni'];
@@ -65,6 +66,8 @@ header_remove("X-Powered-By");
                         <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
                         
                         <td><input type="submit" value="Alquilar" ></td>
+
+                        <td><?php echo "<a href='comentarios.php?id=$row[0]' class='button'>Ver</a>"?></td>
                     </form>
                 </tr>
                 <?php endwhile;?>

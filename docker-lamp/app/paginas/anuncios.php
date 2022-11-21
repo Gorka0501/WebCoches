@@ -46,6 +46,7 @@ header_remove("X-Powered-By");
                             <th>Kilometraje</th>
                             <th>Alquilado</th>
                             <th>Eliminar</th>
+                            <th>Comentarios</th>
                         </tr>
                         <?php
                         include("../codigoPHP/conexion.php");
@@ -68,6 +69,7 @@ header_remove("X-Powered-By");
                                     }else{echo "No";}
                                     ?> </td>
                                 <td><input type="submit" value="Eliminar" ></td>
+                                <td><?php echo "<a href='comentarios.php?id=$row[0]' class='button'>Ver</a>"?></td>
                                 <input type="hidden" name="CSRFToken" value="<?PHP echo $_SESSION["token"];?>">
                             </form>
                         </tr>
