@@ -280,6 +280,15 @@ function bPasarVerComentarios(){
     document.getElementById('anadirComentario').style.display='none';
 }
 
+function bPasarAnadirComentario(){
+    document.getElementById('listaComentarios').style.display='none';
+    document.getElementById('anadirComentario').style.display='block';
+}
+function bPasarVerComentarios(){
+    document.getElementById('listaComentarios').style.display='block';
+    document.getElementById('anadirComentario').style.display='none';
+}
+
 
 function inactividad(){
     var tiempo;
