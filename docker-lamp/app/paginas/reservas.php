@@ -65,7 +65,7 @@ header_remove("X-Powered-By");
                         <td> <?php echo $row2[4];?></td>
                         <td> <?php echo $row[1];?></td>
                         <td> <?php echo $row[2];?></td>
-                        <td><input type="button" value="Ver" onclick=<?php echo "<a href='comentarios.php?id=$row[0]&fFin=$row[1],fInicio=$row[1]'></a>"?>; ></td>
+                        <td><?php echo "<a href='comentarios.php?id=$row[0]' class='button'>Ver</a>"?></td>
                	    </tr>
                	    </tr>
               	  <?php endwhile;?>   
